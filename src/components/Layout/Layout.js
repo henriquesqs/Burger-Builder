@@ -1,16 +1,16 @@
 import React from "react";
-import Aux from "../hoc/Aux";
+import Auxiliar from "../hoc/Auxiliar";
 
 import "./styles.css";
 
 const Layout = (props) => {
 	return (
-		<Aux>
+		<Auxiliar>
 			<div>Toolbar, SideDrawer, Backdrop</div>
 			<main className="Container">
 				{props.children}
 			</main>
-		</Aux>
+		</Auxiliar>
 	);
 }
 
