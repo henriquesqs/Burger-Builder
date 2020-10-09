@@ -20,7 +20,7 @@ const BurgerBuilder = () => {
         meat: 0,
     });
 
-    const [totalPrice, setTotalPrice] = useState(4);
+    const [totalPrice, setTotalPrice] = useState(2);
 
     const addIngredientHandler = (type) => {
 
@@ -57,12 +57,12 @@ const BurgerBuilder = () => {
             setIngredients(updatedIngredients);
         }
     }
-    
+
     const disabledInfo = {
         ...ingredients
     };
 
-    for(let key in disabledInfo){
+    for (let key in disabledInfo) {
         disabledInfo[key] = disabledInfo[key] <= 0;
     }
 
@@ -73,6 +73,7 @@ const BurgerBuilder = () => {
                 ingredientAdded={addIngredientHandler}
                 ingredientRemoved={removeIngredientHandler}
                 disabled={disabledInfo}
+                price={totalPrice}
             />
         </Auxiliar>
     );
