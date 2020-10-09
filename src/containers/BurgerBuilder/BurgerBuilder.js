@@ -21,6 +21,18 @@ const BurgerBuilder = () => {
     });
 
     const [totalPrice, setTotalPrice] = useState(2);
+    const [purchaseable, setPurchaseable] = useState(false);
+
+    const updatePurchaseState = (newIngredients) => {
+
+        const sum = Object.keys(newIngredients).map(igKey => {
+            return newIngredients[igKey];
+        }).reduce((sum, el) => {
+            return sum + el;
+        }, 0);
+
+        setPurchaseable(sum > 0); // sets purchaseable to true if sum > 0 or false otherwise
+    }
 
     const addIngredientHandler = (type) => {
 
@@ -36,6 +48,7 @@ const BurgerBuilder = () => {
 
         setTotalPrice(newPrice);
         setIngredients(updatedIngredients);
+        updatePurchaseState(updatedIngredients);
 
     }
 
@@ -55,6 +68,7 @@ const BurgerBuilder = () => {
 
             setTotalPrice(newPrice);
             setIngredients(updatedIngredients);
+            updatePurchaseState(updatedIngredients);
         }
     }
 
@@ -74,6 +88,7 @@ const BurgerBuilder = () => {
                 ingredientRemoved={removeIngredientHandler}
                 disabled={disabledInfo}
                 price={totalPrice}
+                purchaseable={purchaseable}
             />
         </Auxiliar>
     );
