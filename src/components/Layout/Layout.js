@@ -7,16 +7,26 @@ import "./styles.css";
 
 const Layout = (props) => {
 
-	const [showSideDrawer, setShowSideDrawer] = useState(true);
+	// Hook and its function to control whether we show the SideDrawer or not
+	const [showSideDrawer, setShowSideDrawer] = useState(false);
 
 	function sideDrawerCloserHandler() {
 		setShowSideDrawer(false);
 	}
 
+	function sideDrawerToggleHandler() {
+		// Setting the new State based on the old State in a safe way
+		setShowSideDrawer(showSideDrawer => !showSideDrawer);
+	}
+
 	return (
 		<Auxiliar>
-			<Toolbar />
-			<SideDrawer open={showSideDrawer} closed={sideDrawerCloserHandler} />
+			<Toolbar drawerToggleClicked={sideDrawerToggleHandler} />
+			<SideDrawer
+				open={showSideDrawer}
+				closed={sideDrawerCloserHandler}
+
+			/>
 			<main className="Container">
 				{props.children}
 			</main>
