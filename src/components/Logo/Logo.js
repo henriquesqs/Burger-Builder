@@ -5,6 +5,7 @@ import "./styles.css";
 
 const Logo = (props) => (
     <div className="Logo">
+        {/* <img src={burgerLogo} style={{height: props.height}} alt="MyBurger Logo" /> */}
         <img src={burgerLogo} alt="MyBurger Logo" />
     </div>
 );
