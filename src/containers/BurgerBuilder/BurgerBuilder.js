@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
-
 import Auxiliar from "../../components/hoc/Auxiliar";
+import Modal from "../../components/UI/Modal/Modal";
+import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -20,8 +21,22 @@ const BurgerBuilder = () => {
         meat: 0,
     });
 
+    // hook to control the total price of our burger
     const [totalPrice, setTotalPrice] = useState(2);
+
+    // hook to control if we can purchase
     const [purchaseable, setPurchaseable] = useState(false);
+
+    // hook to control wheter we are purchasing a burger or not
+    const [purchasing, setPurchasing] = useState(false);
+
+    const purchaseHandler = () => {
+        setPurchasing(true);
+    }
+
+    const purchaseCancelHandler = () => {
+        setPurchasing(false);
+    }
 
     const updatePurchaseState = (newIngredients) => {
 
@@ -82,6 +97,9 @@ const BurgerBuilder = () => {
 
     return (
         <Auxiliar>
+            <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
+                <OrderSummary ingredients={ingredients} />
+            </Modal>
             <Burger ingredients={ingredients} />  {/* graphic representation */}
             <BuildControls
                 ingredientAdded={addIngredientHandler}
@@ -89,6 +107,7 @@ const BurgerBuilder = () => {
                 disabled={disabledInfo}
                 price={totalPrice}
                 purchaseable={purchaseable}
+                ordered={purchaseHandler}
             />
         </Auxiliar>
     );
