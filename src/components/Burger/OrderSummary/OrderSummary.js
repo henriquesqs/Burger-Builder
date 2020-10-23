@@ -1,8 +1,13 @@
-import React from "react";
+import React /*,{ useEffect }*/ from "react";
 import Button from "../../UI/Button/Button";
 import Aux from "../../hoc/Auxiliar";
 
 const OrderSummary = (props) => {
+
+    // Just to check when this component is updating
+    // useEffect(() => {
+    //     console.log("Atualizou o Order");
+    // })
 
     const ingredientSummary = Object.keys(props.ingredients).map(igKey => {
         return (
