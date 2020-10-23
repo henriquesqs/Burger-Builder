@@ -38,6 +38,10 @@ const BurgerBuilder = () => {
         setPurchasing(false);
     }
 
+    const purchaseContinueHandler = () => {
+        alert('You continue!');
+    }
+
     const updatePurchaseState = (newIngredients) => {
 
         const sum = Object.keys(newIngredients).map(igKey => {
@@ -98,7 +102,11 @@ const BurgerBuilder = () => {
     return (
         <Auxiliar>
             <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
-                <OrderSummary ingredients={ingredients} />
+                <OrderSummary
+                    purchaseCancelled={purchaseCancelHandler}
+                    purchaseContinued={purchaseContinueHandler}
+                    ingredients={ingredients}
+                />
             </Modal>
             <Burger ingredients={ingredients} />  {/* graphic representation */}
             <BuildControls
